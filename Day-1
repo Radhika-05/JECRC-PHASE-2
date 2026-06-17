@@ -30,3 +30,79 @@ public:
             return{-1,-1};    }
     
 };
+
+
+Problem 53: Maximum Subarray
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum = INT_MIN;
+        for(int i=0; i<nums.size(); i++){
+            int sum=0;
+            for(int j=i; j<nums.size(); j++){
+                sum= sum + nums[j];
+                maxSum = max(maxSum, sum);
+
+            }
+        }
+        return maxSum;
+        
+    }
+};
+
+OPTIMIZED VERSION:
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum = INT_MIN;
+        int sum = 0;
+        for(int i=0; i<nums.size(); i++){
+                sum= sum + nums[i];
+                if(maxSum <sum){
+                    maxSum= sum;
+                }
+                if(sum<0){
+                    sum=0;
+                }
+
+            }
+            return maxSum;
+       
+        
+    }
+};
+
+
+Problem 75:
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int count0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]==0){
+                count0++;
+            }
+            else if(nums[i] == 1){
+                count1++;
+            }
+            else{
+                count2++;
+            }
+        }
+        for(int i=0; i<nums.size(); i++){
+            if(i<count0){
+                nums[i] = 0;
+            } 
+            else if(i< count0+ count1){
+                nums[i]= 1;
+            }
+            else{
+                nums[i]=2;
+            }
+        }
+        
+    }
+};
