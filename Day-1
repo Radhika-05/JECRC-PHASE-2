@@ -32,7 +32,7 @@ public:
 };
 
 
-Problem 53: Maximum Subarray
+---------Problem 53: Maximum Subarray---------------
 
 class Solution {
 public:
@@ -51,7 +51,7 @@ public:
     }
 };
 
-OPTIMIZED VERSION:
+OPTIMIZED VERSION: (kandans algo)
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
@@ -74,7 +74,8 @@ public:
 };
 
 
-Problem 75:
+---------------Problem 75:-------------
+
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
@@ -104,5 +105,28 @@ public:
             }
         }
         
+    }
+};
+
+OPTIMIZED VERSION: DUTCH NATIONAL FLAG ALGO
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int start = 0;
+        int middle = 0;
+        int end = nums.size() - 1;
+
+        while(middle <= end) {
+            if(nums[middle] == 0){
+                swap(nums[start], nums[middle]);
+                start++;
+                middle++;
+            }  else if (nums[middle] == 1){
+                middle++;
+            } else {
+                swap(nums[middle], nums[end]);
+                end--;
+            }
+       }
     }
 };
