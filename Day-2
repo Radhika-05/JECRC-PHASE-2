@@ -1,0 +1,88 @@
+------------Problem 169: Majority Element----------
+
+------>Approach 1:
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            int count = 0;
+            for(int j=0; j<n; j++){
+                if(nums[i] == nums[j]){
+                    count++;
+                }
+            }
+            if(count>n/2){
+                return nums[i];
+            }
+        }
+
+        return -1;
+    }
+};
+
+
+-------> Approach 2:
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n=nums.size();
+        return nums[n/2];
+    }
+};
+
+
+------> Approach 3: OPTIMIZED: BOYER MOORE'S VOTING ALGO:
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int candidate = -1;
+        int vote = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            if(vote == 0) {
+                candidate = nums[i];
+                vote = 1;
+            } else {
+                if(candidate == nums[i]) {
+                    vote++;
+                }else {
+                    vote--;
+                }
+            }
+        }
+        int count = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            if(nums[i] == candidate){
+                count++;
+            }
+        }
+        if(count > nums.size() / 2){
+                return candidate;
+            }  
+        return -1;
+    }
+};
+
+
+--------------------------PROBLEM 283:MOVES ZEROES-------------------------
+
+Approach 1:
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int index=0;
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]!=0){
+                nums[index]= nums[i];
+                index++;
+            }
+
+        }
+        while(index<nums.size()){
+            nums[index] = 0;
+            index++;
+        }
+        
+    }
+};
